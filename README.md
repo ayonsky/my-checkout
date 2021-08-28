@@ -31,7 +31,10 @@ Dev Requirements
   * GET /grocery?favorite=1: get the list of favorite items
 Please refer to the README file for details on how to run the API server locally.
 
+## Mockup and Look & Feel
 
+<img src="https://i.imgur.com/f2IPwGL.png">
+<image src="https://i.imgur.com/FfesgU4.png">
 
 ## Available Scripts
 
