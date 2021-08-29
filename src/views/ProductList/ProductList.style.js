@@ -12,7 +12,12 @@ export const ProductListContainer = styled.div`
   height: 100vh;
   overflow-y: auto;
   justify-content: space-around;
-  padding: ${({isMobile}) => isMobile ? `10px` : `30px`};
+  padding: ${({ isMobile }) => (isMobile ? `10px` : `30px`)};
 
   ${({ isMobile }) => !isMobile && `border-right: solid rgb(0 0 0 / 8%);`}
+
+  &:after {
+    content: "";
+    flex: auto;
+  }
 `;

@@ -2,6 +2,8 @@ import React from "react";
 import {
   CartRowBody,
   CartRowContainer,
+  CartRowCounterButton,
+  CartRowCounterInput,
   CartRowImg,
   CartRowImgContainer,
   CartRowPrice,
@@ -17,9 +19,9 @@ function CartRow({ data }) {
       <CartRowBody>
         <div className="cart-row__container__body__title">Lorem Ipsu</div>
         <div className="cart-row__container__body__counter">
-          <button>-</button>
-          <input type={"text"} value={1} style={{ width: "20px" }} />
-          <button>+</button>
+          <CartRowCounterButton counter={"decrement"}>-</CartRowCounterButton>
+          <CartRowCounterInput type={"text"} value={1} style={{ width: "20px" }} />
+          <CartRowCounterButton counter={"increment"}>+</CartRowCounterButton>
         </div>
       </CartRowBody>
       <CartRowPrice>30€</CartRowPrice>

@@ -39,6 +39,13 @@ function Cart(props) {
         <CartRow key={new Date().getTime()} data={itemData}/>
         <CartRow key={new Date().getTime()} data={itemData}/>
         <CartRow key={new Date().getTime()} data={itemData}/>
+        <CartRow key={new Date().getTime()} data={itemData}/>
+        <CartRow key={new Date().getTime()} data={itemData}/>
+        <CartRow key={new Date().getTime()} data={itemData}/>
+        <CartRow key={new Date().getTime()} data={itemData}/>
+        <CartRow key={new Date().getTime()} data={itemData}/>
+        <CartRow key={new Date().getTime()} data={itemData}/>
+        <CartRow key={new Date().getTime()} data={itemData}/>
       </CartRowsContainer>
       <CartFooter>
         <Button width={"100%"} type={"submit"} fontSize={"18px"}>
