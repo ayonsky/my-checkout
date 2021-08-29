@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { VerticalCenter } from "../../App.style";
 
 export const CartRowContainer = styled.div`
