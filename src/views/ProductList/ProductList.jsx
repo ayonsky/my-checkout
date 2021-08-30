@@ -4,7 +4,11 @@ import Item from "../../components/Item/Item";
 import withHeader from "../../hocs/withHeader";
 import useProducts from "../../hooks/useProducts";
 import { pageNames } from "../../utils/constants";
-import { ProductListContainer, ProductListWrapper } from "./ProductList.style";
+import {
+  ProductListContainer,
+  ProductListFlexDiv,
+  ProductListWrapper,
+} from "./ProductList.style";
 
 function ProductList() {
   const {
@@ -44,9 +48,11 @@ function ProductList() {
         Show only favorite?
       </div>
       <ProductListWrapper isMobile={isMobile} onScroll={handleScroll}>
-        {products.map((product) => (
-          <Item key={product.id} item={product} />
-        ))}
+        <ProductListFlexDiv>
+          {products.map((product) => (
+            <Item key={product.id} item={product} />
+          ))}
+        </ProductListFlexDiv>
       </ProductListWrapper>
     </ProductListContainer>
   );
