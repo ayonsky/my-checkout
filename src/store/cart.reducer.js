@@ -5,6 +5,9 @@ import {
   REMOVE_PRODUCT_FROM_CART,
   REMOVE_PRODUCT_FROM_CART_ERROR,
   REMOVE_PRODUCT_FROM_CART_SUCCESS,
+  UPDATE_CART_PRODUCT,
+  UPDATE_CART_PRODUCT_ERROR,
+  UPDATE_CART_PRODUCT_SUCCESS,
 } from "./cart.actions";
 
 let initialState = {
@@ -32,10 +35,22 @@ export const cartReducer = (state = initialState, { type, payload }) => {
               }
               return product;
             })
-          : [...state.data, payload],
+          : [...state.data, { ...payload, quantity: 1 }],
       };
     }
     case ADD_PRODUCT_TO_CART_ERROR:
+      return { ...state, loading: false, error: payload };
+    case UPDATE_CART_PRODUCT:
+      return { ...state, loading: true, error: null };
+    case UPDATE_CART_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: state.data.map((product) =>
+          product.id === payload.id ? payload : product
+        ),
+      };
+    case UPDATE_CART_PRODUCT_ERROR:
       return { ...state, loading: false, error: payload };
     case REMOVE_PRODUCT_FROM_CART:
       return { ...state, loading: true, error: null };

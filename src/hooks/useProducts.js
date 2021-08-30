@@ -7,6 +7,7 @@ import {
   loadMoreProductsAction,
   loadProductsAction,
   removeProductFromCartAction,
+  updateCartProductAction,
   updateProductAction,
 } from "../store";
 
@@ -30,6 +31,7 @@ function useProducts() {
     ),
     addProduct: (product) => dispatch(addProductToCartAction(product)),
     updateProduct: (product) => dispatch(updateProductAction(product)),
+    updateCartProduct: (product) => dispatch(updateCartProductAction(product)),
     removeProduct: (id) => dispatch(removeProductFromCartAction(id)),
   };
 }

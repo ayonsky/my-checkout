@@ -35,7 +35,6 @@ function Item(props) {
     const updateProductStock = {
       ...product,
       stock: product.stock > 0 ? product.stock - 1 : 0,
-      quantity: 1,
     };
     addProduct(updateProductStock);
   };

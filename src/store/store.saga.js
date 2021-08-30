@@ -12,6 +12,9 @@ import {
   REMOVE_PRODUCT_FROM_CART,
   REMOVE_PRODUCT_FROM_CART_ERROR,
   REMOVE_PRODUCT_FROM_CART_SUCCESS,
+  UPDATE_CART_PRODUCT,
+  UPDATE_CART_PRODUCT_ERROR,
+  UPDATE_CART_PRODUCT_SUCCESS,
 } from "./cart.actions";
 import {
   LOAD_FAVORITE_PRODUCTS,
@@ -112,6 +115,25 @@ export function* watchRemovingProductFromCartAsync() {
   yield takeEvery(REMOVE_PRODUCT_FROM_CART, removeProductFromCartAsync);
 }
 
+export function* updatingCartProductAsync({ payload }) {
+  try {
+    const cartProduct = { ...payload };
+
+    delete payload.quantity;
+
+    const data = yield call(updateProductAPI, payload);
+    const updatedProduct = data;
+    yield put({ type: UPDATE_PRODUCT_SUCCESS, payload: updatedProduct });
+    yield put({ type: UPDATE_CART_PRODUCT_SUCCESS, payload: cartProduct });
+  } catch (err) {
+    yield put({ type: UPDATE_CART_PRODUCT_ERROR, payload: err });
+  }
+}
+
+export function* watchUpdatingCartProductAsync() {
+  yield takeEvery(UPDATE_CART_PRODUCT, updatingCartProductAsync);
+}
+
 export function* storeSaga() {
   yield all([
     watchLoadingProductsAsync(),
@@ -120,5 +142,6 @@ export function* storeSaga() {
     watchLoadingMoreProductsAsync(),
     watchLoadingFavoriteProductsAsync(),
     watchRemovingProductFromCartAsync(),
+    watchUpdatingCartProductAsync(),
   ]);
 }

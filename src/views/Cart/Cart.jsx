@@ -14,13 +14,23 @@ import {
 
 function Cart() {
   const [amount, setAmount] = useState(0);
-  const { cart = [], products } = useProducts();
+  const { cart = [], products, removeProduct } = useProducts();
 
   useEffect(() => {
+    const cartInstance = [...cart];
+    const removeFromCart = cartInstance.filter((item) => item.quantity === 0);
+
+    if (removeFromCart.length) {
+      removeFromCart.forEach((item) => {
+        removeProduct(item.id);
+      });
+    }
+
     setAmount(
       cart.reduce((total, item) => total + item.price * item.quantity, 0)
     );
-  }, [products, cart]);
+  }, [products, cart, removeProduct]);
+
   return (
     <CartContainer>
       <CartRowsContainer>

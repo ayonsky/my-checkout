@@ -12,7 +12,7 @@ import {
 } from "./CartRow.style";
 
 function CartRow({ data }) {
-  const { updateProduct, removeProduct } = useProducts();
+  const { updateCartProduct } = useProducts();
   const { image_url, stock, productName, price, quantity = 1 } = data;
 
   const handleCounter = (action, product) => {
@@ -20,15 +20,11 @@ function CartRow({ data }) {
     if (action === "increment" && stock > 0) {
       productToUpdate.quantity += 1;
       productToUpdate.stock -= 1;
-      updateProduct(productToUpdate);
+      updateCartProduct(productToUpdate);
     } else if (action === "decrement" && quantity > 0) {
       productToUpdate.quantity -= 1;
       productToUpdate.stock += 1;
-      updateProduct(productToUpdate);
-
-      if (productToUpdate.quantity === 0) {
-        removeProduct(productToUpdate.id);
-      }
+      updateCartProduct(productToUpdate);
     }
   };
 
