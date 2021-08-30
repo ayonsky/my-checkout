@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { GlobalStyles, Loader, LoaderContainer } from "./App.style";
+import CartView from "./views/Cart/Cart";
+import ProductListLayout from "./views/ProductList/ProductListLayout";
+import CircleLoader from "react-spinners/CircleLoader";
+import useProducts from "./hooks/useProducts";
 
 function App() {
+  const { loading } = useProducts();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {loading && (
+        <LoaderContainer>
+          <Loader>
+            <CircleLoader color={"orange"} loading={loading} size={150} />
+          </Loader>
+        </LoaderContainer>
+      )}
+      <BrowserRouter>
+        <GlobalStyles />
+        <Switch>
+          <Route path="/cart">
+            <CartView />
+          </Route>
+          <Route path="/">
+            <ProductListLayout />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </>
   );
 }
 
