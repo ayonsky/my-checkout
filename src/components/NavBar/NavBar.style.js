@@ -10,16 +10,27 @@ export const NavBarContainer = styled.div`
   ${({ isMobile }) => !isMobile && `border-right: solid rgb(0 0 0 / 8%);`}
 `;
 
-export const NavBarLeft = styled.div`
-  ${VerticalCenter}
-`;
-
 export const NavBarCenter = styled.div`
   ${VerticalCenter}
   font-weight: 400;
   font-size: 2em;
 `;
 
-export const NavBarRight = styled.div`
+export const NavBarIcon = styled.div`
   ${VerticalCenter}
+  position: relative;
+`;
+
+export const CartIconBadge = styled.div`
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  font-size: 10px;
+  color: #fff;
+  text-align: center;
+  background: orangered;
+  line-height: 15px;
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
