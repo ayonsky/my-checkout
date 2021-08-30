@@ -7,24 +7,31 @@ import { pageNames } from "../../utils/constants";
 import { ProductListContainer, ProductListWrapper } from "./ProductList.style";
 
 function ProductList() {
-  const { products = [], getProducts } = useProducts();
-  const [list, setList] = useState([]);
+  const {
+    products = [],
+    getProducts,
+    getMoreProducts,
+    getFavoriteProducts,
+  } = useProducts();
+  const [page, setPage] = useState(2);
   const [toggle, setToggle] = useState(false);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
 
   useEffect(() => {
-    if (products.length) {
-      setList(products);
+    if (toggle) {
+      getFavoriteProducts();
     } else {
       getProducts();
     }
+  }, [getProducts, getFavoriteProducts, toggle]);
 
-    if (toggle) {
-      setList(products.filter((item) => item.favorite === true));
-    } else {
-      setList(products);
+  const handleScroll = (event) => {
+    const element = event.target;
+    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+      getMoreProducts(page);
+      setPage(page + 1);
     }
-  }, [getProducts, products, toggle]);
+  };
 
   return (
     <ProductListContainer>
@@ -36,8 +43,8 @@ function ProductList() {
       >
         Show only favorite?
       </div>
-      <ProductListWrapper isMobile={isMobile}>
-        {list.map((product) => (
+      <ProductListWrapper isMobile={isMobile} onScroll={handleScroll}>
+        {products.map((product) => (
           <Item key={product.id} item={product} />
         ))}
       </ProductListWrapper>

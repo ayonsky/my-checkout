@@ -1,4 +1,7 @@
 import {
+  LOAD_MORE_PRODUCTS,
+  LOAD_MORE_PRODUCTS_ERROR,
+  LOAD_MORE_PRODUCTS_SUCCESS,
   LOAD_PRODUCTS,
   LOAD_PRODUCTS_ERROR,
   LOAD_PRODUCTS_SUCCESS,
@@ -20,6 +23,12 @@ export const checkoutReducer = (state = initialState, { type, payload }) => {
     case LOAD_PRODUCTS_SUCCESS:
       return { ...state, loading: false, data: payload };
     case LOAD_PRODUCTS_ERROR:
+      return { ...state, loading: false, error: payload };
+    case LOAD_MORE_PRODUCTS:
+      return { ...state, loading: true, error: null };
+    case LOAD_MORE_PRODUCTS_SUCCESS:
+      return { ...state, loading: false, data: [...state.data, ...payload] };
+    case LOAD_MORE_PRODUCTS_ERROR:
       return { ...state, loading: false, error: payload };
     case UPDATE_PRODUCT:
       return { ...state, loading: true, error: null };

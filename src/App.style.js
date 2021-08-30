@@ -10,6 +10,10 @@ export const GlobalStyles = createGlobalStyle`
   a, a:visited, a:hover, a:active {
   color: inherit;
 }
+
+body {
+  overflow: hidden;
+}
 `;
 
 export const Button = styled.button`

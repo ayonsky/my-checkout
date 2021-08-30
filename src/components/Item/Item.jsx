@@ -23,7 +23,10 @@ function Item(props) {
     item;
 
   const handleToggleFavorite = (product) => {
-    const updatedProduct = { ...product, favorite: !product.favorite };
+    const updatedProduct = {
+      ...product,
+      favorite: product.favorite === 0 ? 1 : 0,
+    };
     updateProduct(updatedProduct);
   };
 

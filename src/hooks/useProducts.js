@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
   addProductToCartAction,
+  loadFavoriteProductsAction,
+  loadMoreProductsAction,
   loadProductsAction,
   updateProductAction,
 } from "../store";
@@ -20,6 +22,11 @@ function useProducts() {
     cart: useSelector((state) => state.cart.data),
     // Dispatchers
     getProducts: useCallback(() => dispatch(loadProductsAction()), [dispatch]),
+    getMoreProducts: (page) => dispatch(loadMoreProductsAction(page)),
+    getFavoriteProducts: useCallback(
+      () => dispatch(loadFavoriteProductsAction()),
+      [dispatch]
+    ),
     addProduct: (product) => dispatch(addProductToCartAction(product)),
     updateProduct: (product) => dispatch(updateProductAction(product)),
   };
