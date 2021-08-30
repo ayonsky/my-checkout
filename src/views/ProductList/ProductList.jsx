@@ -1,54 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import Item from "../../components/Item/Item";
 import withHeader from "../../hocs/withHeader";
+import useProducts from "../../hooks/useProducts";
 import { pageNames } from "../../utils/constants";
-import { ProductListContainer } from "./ProductList.style";
+import { ProductListContainer, ProductListWrapper } from "./ProductList.style";
 
-function ProductList(props) {
+function ProductList() {
+  const { products = [], getProducts } = useProducts();
+  const [list, setList] = useState([]);
+  const [toggle, setToggle] = useState(false);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
 
-  const itemData = {
-    id: "af689e54-4137-4e0c-977d-bc959cf9bdc4",
-    image_url:
-      "https://dummyimage.com/400x400/b7dd15/000&text=Tasty Metal Bike",
-    stock: 15,
-    productName: "Tasty Metal Bike",
-    price: 25,
-    productDescription:
-      "Dolore et quas in autem repellendus quisquam est. Pariatur est ut quibusdam et vel. Dolores consequatur ut ut quasi tempore. Corporis et dicta. Iure eum aut nostrum quam natus reprehenderit.",
-    favorite: 0,
-  };
+  useEffect(() => {
+    if (products.length) {
+      setList(products);
+    } else {
+      getProducts();
+    }
+
+    if (toggle) {
+      setList(products.filter((item) => item.favorite === true));
+    } else {
+      setList(products);
+    }
+  }, [getProducts, products, toggle]);
 
   return (
-    <ProductListContainer isMobile={isMobile}>
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
-      <Item key={new Date().getTime()} item={itemData} />
+    <ProductListContainer>
+      <div
+        className={"toggleSwitch"}
+        onClick={() => {
+          setToggle((prev) => !prev);
+        }}
+      >
+        Show only favorite?
+      </div>
+      <ProductListWrapper isMobile={isMobile}>
+        {list.map((product) => (
+          <Item key={product.id} item={product} />
+        ))}
+      </ProductListWrapper>
     </ProductListContainer>
   );
 }

@@ -22,7 +22,7 @@ export const CartRowBody = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 5px 40px 10px 0px;
+  margin: 5px 40px 10px 10px;
 `;
 
 export const CartRowPrice = styled.div`
@@ -46,6 +46,15 @@ export const CartRowCounterButton = styled.button`
     counter === "decrement"
       ? `border-left: 1px solid gainsboro`
       : `border-right: 1px solid gainsboro;`};
+
+  ${({ counter, stock, quantity }) => {
+    if (
+      (counter === "decrement" && quantity === 0) ||
+      (counter === "increment" && stock === 0)
+    ) {
+      return `color: #e8e8e8`;
+    }
+  }}
 `;
 
 export const CartRowCounterInput = styled.input`

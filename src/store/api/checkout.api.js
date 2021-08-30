@@ -1,8 +1,18 @@
-import axios, {get} from "axios";
-import { parseList } from "../../utils";
-import { API_ENDPOINT } from "../config";
+import { get, patch } from "axios";
+import { parseItem, parseList } from "../../utils";
+import { API } from "./config";
 
-export const loadProducts = async () => {
-    const response = await get(`${API_ENDPOINT}/grocery`);
-    return parseList(response, 200);
+const headers = {
+  "Content-Type": "application/json",
+};
+
+export const loadProductsAPI = async () => {
+  const response = await get(`${API}/grocery`);
+  return parseList(response, 200);
+};
+
+export const updateProductAPI = async (product) => {
+  const { id } = product;
+  const response = await patch(`${API}/grocery/${id}`, product, { headers });
+  return parseItem(response, 200);
 };

@@ -6,6 +6,7 @@ export const CartContainer = styled.div`
   height: 100vh;
   overflow-y: auto;
   padding-left: 20px;
+  min-width: 370px;
 `;
 
 export const CartRowsContainer = styled.div`

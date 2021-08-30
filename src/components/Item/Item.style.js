@@ -10,7 +10,7 @@ export const ItemContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: auto;
+  height: 262px;
 `;
 
 export const ItemImg = styled.img`

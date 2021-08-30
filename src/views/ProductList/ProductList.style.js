@@ -5,7 +5,7 @@ export const ProductListLayoutContainer = styled.div`
   height: 100vh;
 `;
 
-export const ProductListContainer = styled.div`
+export const ProductListWrapper = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
   gap: 25px;
@@ -14,10 +14,12 @@ export const ProductListContainer = styled.div`
   justify-content: space-around;
   padding: ${({ isMobile }) => (isMobile ? `10px` : `30px`)};
 
-  ${({ isMobile }) => !isMobile && `border-right: solid rgb(0 0 0 / 8%);`}
-
   &:after {
     content: "";
     flex: auto;
   }
+`;
+
+export const ProductListContainer = styled.div`
+  ${({ isMobile }) => !isMobile && `border-right: solid rgb(0 0 0 / 8%);`}
 `;

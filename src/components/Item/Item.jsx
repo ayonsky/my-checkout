@@ -1,6 +1,7 @@
 import React from "react";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { Button } from "../../App.style";
+import useProducts from "../../hooks/useProducts";
 import {
   ContentWrapper,
   ImageWrapper,
@@ -16,23 +17,36 @@ import {
 } from "./Item.style";
 
 function Item(props) {
+  const { addProduct, updateProduct } = useProducts();
   const { item = {} } = props;
+  const { image_url, stock, productName, price, productDescription, favorite } =
+    item;
 
-  const {
-    id,
-    image_url,
-    stock,
-    productName,
-    price,
-    productDescription,
-    favorite,
-  } = item;
+  const handleToggleFavorite = (product) => {
+    const updatedProduct = { ...product, favorite: !product.favorite };
+    updateProduct(updatedProduct);
+  };
+
+  const handleAddToCart = (product) => {
+    if (product.stock === 0) return;
+    const updateProductStock = {
+      ...product,
+      stock: product.stock > 0 ? product.stock - 1 : 0,
+      quantity: 1,
+    };
+    addProduct(updateProductStock);
+  };
 
   return (
     <ItemContainer>
       <ImageWrapper>
         <ItemImg src={image_url} alt={""} />
-        <ItemFavorite>
+        <ItemFavorite
+          onClick={(e) => {
+            e.stopPropagation();
+            handleToggleFavorite(item);
+          }}
+        >
           {favorite ? <MdFavorite size={25} /> : <MdFavoriteBorder size={25} />}
         </ItemFavorite>
       </ImageWrapper>
@@ -46,8 +60,16 @@ function Item(props) {
         )}
       </ContentWrapper>
       <ItemBottomContent>
-        {stock && <ItemStock>{`${stock} left`}</ItemStock>}
-        <Button>add</Button>
+        <ItemStock>{`${stock} left`}</ItemStock>
+        <Button
+          stock={stock}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleAddToCart(item);
+          }}
+        >
+          add
+        </Button>
       </ItemBottomContent>
     </ItemContainer>
   );
