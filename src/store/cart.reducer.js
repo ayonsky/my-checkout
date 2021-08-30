@@ -2,9 +2,9 @@ import {
   ADD_PRODUCT_TO_CART,
   ADD_PRODUCT_TO_CART_ERROR,
   ADD_PRODUCT_TO_CART_SUCCESS,
-  UPDATE_CART_PRODUCT,
-  UPDATE_CART_PRODUCT_ERROR,
-  UPDATE_CART_PRODUCT_SUCCESS,
+  REMOVE_PRODUCT_FROM_CART,
+  REMOVE_PRODUCT_FROM_CART_ERROR,
+  REMOVE_PRODUCT_FROM_CART_SUCCESS,
 } from "./cart.actions";
 
 let initialState = {
@@ -26,9 +26,9 @@ export const cartReducer = (state = initialState, { type, payload }) => {
         loading: false,
         data: existInCart
           ? state.data.map((product) => {
-              if (product.id === existInCart.id) {
+              if (product.id === payload.id) {
                 product.quantity += 1;
-                product.stock = existInCart.stock;
+                product.stock = payload.stock;
               }
               return product;
             })
@@ -37,12 +37,16 @@ export const cartReducer = (state = initialState, { type, payload }) => {
     }
     case ADD_PRODUCT_TO_CART_ERROR:
       return { ...state, loading: false, error: payload };
-    case UPDATE_CART_PRODUCT:
-      return {};
-    case UPDATE_CART_PRODUCT_SUCCESS:
-      return {};
-    case UPDATE_CART_PRODUCT_ERROR:
-      return {};
+    case REMOVE_PRODUCT_FROM_CART:
+      return { ...state, loading: true, error: null };
+    case REMOVE_PRODUCT_FROM_CART_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: state.data.filter((product) => product.id !== payload),
+      };
+    case REMOVE_PRODUCT_FROM_CART_ERROR:
+      return { ...state, loading: false, error: payload };
     default:
       return state;
   }

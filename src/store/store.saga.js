@@ -9,6 +9,9 @@ import {
   ADD_PRODUCT_TO_CART,
   ADD_PRODUCT_TO_CART_ERROR,
   ADD_PRODUCT_TO_CART_SUCCESS,
+  REMOVE_PRODUCT_FROM_CART,
+  REMOVE_PRODUCT_FROM_CART_ERROR,
+  REMOVE_PRODUCT_FROM_CART_SUCCESS,
 } from "./cart.actions";
 import {
   LOAD_FAVORITE_PRODUCTS,
@@ -97,6 +100,18 @@ export function* watchAddingProductToCartAsync() {
   yield takeEvery(ADD_PRODUCT_TO_CART, addingProductToCartAsync);
 }
 
+export function* removeProductFromCartAsync({ payload }) {
+  try {
+    yield put({ type: REMOVE_PRODUCT_FROM_CART_SUCCESS, payload });
+  } catch (err) {
+    yield put({ type: REMOVE_PRODUCT_FROM_CART_ERROR, payload: err });
+  }
+}
+
+export function* watchRemovingProductFromCartAsync() {
+  yield takeEvery(REMOVE_PRODUCT_FROM_CART, removeProductFromCartAsync);
+}
+
 export function* storeSaga() {
   yield all([
     watchLoadingProductsAsync(),
@@ -104,5 +119,6 @@ export function* storeSaga() {
     watchAddingProductToCartAsync(),
     watchLoadingMoreProductsAsync(),
     watchLoadingFavoriteProductsAsync(),
+    watchRemovingProductFromCartAsync(),
   ]);
 }

@@ -12,7 +12,7 @@ import {
 } from "./CartRow.style";
 
 function CartRow({ data }) {
-  const { updateProduct } = useProducts();
+  const { updateProduct, removeProduct } = useProducts();
   const { image_url, stock, productName, price, quantity = 1 } = data;
 
   const handleCounter = (action, product) => {
@@ -27,6 +27,7 @@ function CartRow({ data }) {
       updateProduct(productToUpdate);
 
       if (productToUpdate.quantity === 0) {
+        removeProduct(productToUpdate.id);
       }
     }
   };

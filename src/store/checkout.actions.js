@@ -12,13 +12,16 @@ export const UPDATE_PRODUCT_SUCCESS = "UPDATE_PRODUCT_SUCCESS";
 export const UPDATE_PRODUCT_ERROR = "UPDATE_PRODUCT_ERROR";
 
 export const loadProductsAction = () => ({ type: LOAD_PRODUCTS });
+
 export const loadFavoriteProductsAction = () => ({
   type: LOAD_FAVORITE_PRODUCTS,
 });
+
 export const loadMoreProductsAction = (list) => ({
   type: LOAD_MORE_PRODUCTS,
   payload: list,
 });
+
 export const updateProductAction = (product) => ({
   type: UPDATE_PRODUCT,
   payload: product,

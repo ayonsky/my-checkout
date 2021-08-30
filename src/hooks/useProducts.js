@@ -6,6 +6,7 @@ import {
   loadFavoriteProductsAction,
   loadMoreProductsAction,
   loadProductsAction,
+  removeProductFromCartAction,
   updateProductAction,
 } from "../store";
 
@@ -29,6 +30,7 @@ function useProducts() {
     ),
     addProduct: (product) => dispatch(addProductToCartAction(product)),
     updateProduct: (product) => dispatch(updateProductAction(product)),
+    removeProduct: (id) => dispatch(removeProductFromCartAction(id)),
   };
 }
 
