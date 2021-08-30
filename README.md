@@ -40,15 +40,15 @@ Please refer to the README file for details on how to run the API server locally
 
 In the project directory, you can run:
 
-### `yarn start`
+### `yarn run local`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The project has redux-logger active, so you will be able to debug every redux dispatched action in the dev-tools.
 
-NOTE: if you run both the application and the server, one of the url's port will change, take that in mind.
+NOTE: This script will run both the React frontend app, and the JSON Server, its a ready-to-use script to be able to checkout the project and start using the app with less boilerplate.
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.\

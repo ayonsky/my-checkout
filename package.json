@@ -22,7 +22,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "local": "concurrently \"yarn start\" \"yarn run json-server\"",
     "start": "react-scripts start",
+    "json-server": "json-server --watch db.json --port 5000",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -44,5 +46,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.1",
+    "json-server": "^0.16.3"
   }
 }
