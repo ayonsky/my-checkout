@@ -1,6 +1,5 @@
 import React from "react";
 import useProducts from "../../hooks/useProducts";
-import { ItemTitle } from "../Item/Item.style";
 import {
   CartRowBody,
   CartRowContainer,
@@ -9,6 +8,7 @@ import {
   CartRowImg,
   CartRowImgContainer,
   CartRowPrice,
+  CartRowTitle,
 } from "./CartRow.style";
 
 function CartRow({ data }) {
@@ -34,7 +34,7 @@ function CartRow({ data }) {
         <CartRowImg src={image_url} alt={""} />
       </CartRowImgContainer>
       <CartRowBody>
-        <ItemTitle>{productName}</ItemTitle>
+        <CartRowTitle>{productName}</CartRowTitle>
         <div className="cart-row__container__body__counter">
           <CartRowCounterButton
             counter={"decrement"}

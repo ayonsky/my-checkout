@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import { Switch } from "@material-ui/core";
 import Item from "../../components/Item/Item";
 import withHeader from "../../hocs/withHeader";
 import useProducts from "../../hooks/useProducts";
@@ -8,6 +9,7 @@ import {
   ProductListContainer,
   ProductListFlexDiv,
   ProductListWrapper,
+  ToggleSwitchWrapper,
 } from "./ProductList.style";
 
 function ProductList() {
@@ -37,16 +39,20 @@ function ProductList() {
     }
   };
 
+  const handleToggle = (event) => {
+    setToggle(event.target.checked);
+  };
+
   return (
     <ProductListContainer>
-      <div
-        className={"toggleSwitch"}
-        onClick={() => {
-          setToggle((prev) => !prev);
-        }}
-      >
+      <ToggleSwitchWrapper>
         Show only favorite?
-      </div>
+        <Switch
+          checked={toggle}
+          onChange={handleToggle}
+          value="toggleFavorite"
+        />
+      </ToggleSwitchWrapper>
       <ProductListWrapper isMobile={isMobile} onScroll={handleScroll}>
         <ProductListFlexDiv>
           {products.map((product) => (

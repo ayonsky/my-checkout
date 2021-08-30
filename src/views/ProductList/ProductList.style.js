@@ -21,3 +21,7 @@ export const ProductListFlexDiv = styled.div`
   flex-wrap: wrap;
   gap: 25px;
 `;
+
+export const ToggleSwitchWrapper = styled.div`
+  padding: 20px;
+`;

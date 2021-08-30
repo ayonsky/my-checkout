@@ -1,12 +1,12 @@
 import styled from "styled-components/macro";
 import { VerticalCenter } from "../../App.style";
+import { ItemTitle } from "../Item/Item.style";
 
 export const CartRowContainer = styled.div`
   margin: 20px 20px 0px 0px;
   min-width: 300px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 `;
 
 export const CartRowImgContainer = styled.div`
@@ -68,4 +68,8 @@ export const CartRowCounterInput = styled.input`
   border: none;
   border-top: 1px solid gainsboro;
   border-bottom: 1px solid gainsboro;
+`;
+
+export const CartRowTitle = styled(ItemTitle)`
+  width: 150px;
 `;

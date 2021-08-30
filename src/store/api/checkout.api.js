@@ -7,12 +7,12 @@ const headers = {
 };
 
 export const loadProductsAPI = async () => {
-  const response = await get(`${API}/grocery?_page=1&_limit=100`);
+  const response = await get(`${API}/grocery?_page=1&_limit=50`);
   return parseList(response, 200);
 };
 
 export const loadMoreProductsAPI = async (page) => {
-  const response = await get(`${API}/grocery?_page=${page}&_limit=20`);
+  const response = await get(`${API}/grocery?_page=${page}&_limit=50`);
   return parseList(response, 200);
 };
 
