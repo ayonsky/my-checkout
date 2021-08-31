@@ -33,7 +33,10 @@ function ProductList() {
 
   const handleScroll = (event) => {
     const element = event.target;
-    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+    if (
+      !toggle &&
+      element.scrollHeight - element.scrollTop === element.clientHeight
+    ) {
       getMoreProducts(page);
       setPage(page + 1);
     }
@@ -54,7 +57,7 @@ function ProductList() {
         />
       </ToggleSwitchWrapper>
       <ProductListWrapper isMobile={isMobile} onScroll={handleScroll}>
-        <ProductListFlexDiv>
+        <ProductListFlexDiv isMobile={isMobile}>
           {products.map((product) => (
             <Item key={product.id} item={product} />
           ))}

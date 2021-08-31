@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import { Button } from "../../App.style";
 import CartRow from "../../components/CartRow/CartRow";
 import withHeader from "../../hocs/withHeader";
@@ -15,6 +16,7 @@ import {
 function Cart() {
   const [amount, setAmount] = useState(0);
   const { cart = [], products, removeProduct } = useProducts();
+  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
 
   useEffect(() => {
     const cartInstance = [...cart];
@@ -32,8 +34,8 @@ function Cart() {
   }, [products, cart, removeProduct]);
 
   return (
-    <CartContainer>
-      <CartRowsContainer>
+    <CartContainer isMobile={isMobile}>
+      <CartRowsContainer isMobile={isMobile}>
         {cart.map((product) => (
           <CartRow key={`${product.id}`} data={product} />
         ))}

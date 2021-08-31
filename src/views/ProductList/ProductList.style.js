@@ -19,7 +19,8 @@ export const ProductListFlexDiv = styled.div`
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 25px;
+  gap: ${({ isMobile }) => (isMobile ? `8px` : `25px`)};
+  justify-content: center;
 `;
 
 export const ToggleSwitchWrapper = styled.div`

@@ -5,13 +5,16 @@ export const CartContainer = styled.div`
   flex-flow: column;
   height: 100vh;
   overflow-y: auto;
-  padding-left: 20px;
   min-width: 370px;
+
+  ${({ isMobile }) => !isMobile && `padding-left: 20px`};
 `;
 
 export const CartRowsContainer = styled.div`
   flex: 1;
   overflow-y: auto;
+
+  ${({ isMobile }) => isMobile && `padding: 10px`};
 `;
 
 export const CartFooter = styled.div`
