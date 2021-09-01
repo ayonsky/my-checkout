@@ -1,9 +1,8 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch } from "react-router-dom";
 import { GlobalStyles, Loader, LoaderContainer } from "./App.style";
-import CartView from "./views/Cart/Cart";
-import ProductListLayout from "./views/ProductList/ProductListLayout";
 import CircleLoader from "react-spinners/CircleLoader";
+import RoutesHandler from "./routes/RoutesHandler";
 import useProducts from "./hooks/useProducts";
 
 function App() {
@@ -11,6 +10,7 @@ function App() {
 
   return (
     <>
+      <GlobalStyles />
       {loading && (
         <LoaderContainer>
           <Loader>
@@ -19,14 +19,8 @@ function App() {
         </LoaderContainer>
       )}
       <BrowserRouter>
-        <GlobalStyles />
         <Switch>
-          <Route path="/cart">
-            <CartView />
-          </Route>
-          <Route path="/">
-            <ProductListLayout />
-          </Route>
+          <RoutesHandler />
         </Switch>
       </BrowserRouter>
     </>
