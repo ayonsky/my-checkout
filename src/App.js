@@ -1,23 +1,14 @@
 import React from "react";
 import { BrowserRouter, Switch } from "react-router-dom";
-import { GlobalStyles, Loader, LoaderContainer } from "./App.style";
-import CircleLoader from "react-spinners/CircleLoader";
+import { GlobalStyles } from "./App.style";
 import RoutesHandler from "./routes/RoutesHandler";
-import useProducts from "./hooks/useProducts";
+import Loader from "./components/Loader/Loader";
 
 function App() {
-  const { loading } = useProducts();
-
   return (
     <>
       <GlobalStyles />
-      {loading && (
-        <LoaderContainer>
-          <Loader>
-            <CircleLoader color={"orange"} loading={loading} size={150} />
-          </Loader>
-        </LoaderContainer>
-      )}
+      <Loader />
       <BrowserRouter>
         <Switch>
           <RoutesHandler />
