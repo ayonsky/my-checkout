@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useProducts from "../../hooks/useProducts";
 import {
   CartRowBody,
@@ -12,7 +12,9 @@ import {
 } from "./CartRow.style";
 
 function CartRow({ data }) {
+  const [counter, setCounter] = useState(1);
   const { updateCartProduct } = useProducts();
+
   const { image_url, stock, productName, price, quantity = 1 } = data;
 
   const handleCounter = (action, product) => {
@@ -20,10 +22,12 @@ function CartRow({ data }) {
     if (action === "increment" && stock > 0) {
       productToUpdate.quantity += 1;
       productToUpdate.stock -= 1;
+      setCounter((prevCounter) => prevCounter + 1);
       updateCartProduct(productToUpdate);
     } else if (action === "decrement" && quantity > 0) {
       productToUpdate.quantity -= 1;
       productToUpdate.stock += 1;
+      setCounter((prevCounter) => prevCounter - 1);
       updateCartProduct(productToUpdate);
     }
   };
@@ -49,7 +53,7 @@ function CartRow({ data }) {
           </CartRowCounterButton>
           <CartRowCounterInput
             type={"text"}
-            value={quantity}
+            value={counter}
             onChange={() => {}}
             style={{ width: "20px" }}
           />
