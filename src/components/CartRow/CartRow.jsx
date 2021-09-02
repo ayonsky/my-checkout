@@ -35,7 +35,7 @@ function CartRow({ data }) {
       </CartRowImgContainer>
       <CartRowBody>
         <CartRowTitle>{productName}</CartRowTitle>
-        <div className="cart-row__container__body__counter">
+        <div>
           <CartRowCounterButton
             counter={"decrement"}
             stock={stock}
