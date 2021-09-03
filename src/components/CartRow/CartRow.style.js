@@ -30,46 +30,6 @@ export const CartRowPrice = styled.div`
   color: cornflowerblue;
 `;
 
-export const CartRowCounterButton = styled.button`
-  text-align: center;
-  font-size: 18px;
-  color: grey;
-  width: 25px;
-  height: 25px;
-  border: none;
-  background-color: transparent;
-  border-top: 1px solid gainsboro;
-  border-bottom: 1px solid gainsboro;
-  cursor: pointer;
-
-  ${({ counter }) =>
-    counter === "decrement"
-      ? `border-left: 1px solid gainsboro`
-      : `border-right: 1px solid gainsboro;`};
-
-  ${({ counter, stock, quantity }) => {
-    if (
-      (counter === "decrement" && quantity === 0) ||
-      (counter === "increment" && stock === 0)
-    ) {
-      return `color: #e8e8e8`;
-    }
-  }}
-`;
-
-export const CartRowCounterInput = styled.input`
-  width: 20px;
-  text-align: center;
-  font-size: 18px;
-  font-weight: 300;
-  color: grey;
-  height: 23px;
-  outline: none;
-  border: none;
-  border-top: 1px solid gainsboro;
-  border-bottom: 1px solid gainsboro;
-`;
-
 export const CartRowTitle = styled(ItemTitle)`
   width: 150px;
 `;

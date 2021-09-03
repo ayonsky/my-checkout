@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import useProducts from "../../hooks/useProducts";
+import Counter from "../Counter/Counter";
 import {
   CartRowBody,
   CartRowContainer,
-  CartRowCounterButton,
-  CartRowCounterInput,
   CartRowImg,
   CartRowImgContainer,
   CartRowPrice,
@@ -12,22 +11,20 @@ import {
 } from "./CartRow.style";
 
 function CartRow({ data }) {
-  const [counter, setCounter] = useState(1);
   const { updateCartProduct } = useProducts();
 
   const { image_url, stock, productName, price, quantity = 1 } = data;
 
-  const handleCounter = (action, product) => {
-    const productToUpdate = product;
-    if (action === "increment" && stock > 0) {
-      productToUpdate.quantity += 1;
+  const counterOnChange = (counter) => {
+    const productToUpdate = data;
+
+    if (counter > quantity && stock > 0) {
+      productToUpdate.quantity = counter;
       productToUpdate.stock -= 1;
-      setCounter((prevCounter) => prevCounter + 1);
       updateCartProduct(productToUpdate);
-    } else if (action === "decrement" && quantity > 0) {
-      productToUpdate.quantity -= 1;
+    } else if (counter < quantity && quantity > 0) {
+      productToUpdate.quantity = counter;
       productToUpdate.stock += 1;
-      setCounter((prevCounter) => prevCounter - 1);
       updateCartProduct(productToUpdate);
     }
   };
@@ -39,36 +36,7 @@ function CartRow({ data }) {
       </CartRowImgContainer>
       <CartRowBody>
         <CartRowTitle>{productName}</CartRowTitle>
-        <div>
-          <CartRowCounterButton
-            counter={"decrement"}
-            stock={stock}
-            quantity={quantity}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleCounter("decrement", data);
-            }}
-          >
-            -
-          </CartRowCounterButton>
-          <CartRowCounterInput
-            type={"text"}
-            value={counter}
-            onChange={() => {}}
-            style={{ width: "20px" }}
-          />
-          <CartRowCounterButton
-            counter={"increment"}
-            stock={stock}
-            quantity={quantity}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleCounter("increment", data);
-            }}
-          >
-            +
-          </CartRowCounterButton>
-        </div>
+        <Counter onChange={counterOnChange} actual={quantity} max={stock} />
       </CartRowBody>
       <CartRowPrice>{`${price * quantity}€`}</CartRowPrice>
     </CartRowContainer>
