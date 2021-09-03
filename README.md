@@ -49,7 +49,3 @@ The page will reload if you make edits.\
 The project has redux-logger active, so you will be able to debug every redux dispatched action in the dev-tools.
 
 NOTE: This script will run both the React frontend app, and the JSON Server, its a ready-to-use script to be able to checkout the project and start using the app with less boilerplate.
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
