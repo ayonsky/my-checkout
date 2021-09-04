@@ -1,7 +1,7 @@
 import styled from "styled-components/macro";
-import { VerticalCenter } from "../../App.style";
+import { VerticalCenter } from "../../../App.style";
 
-export const ItemContainer = styled.div`
+export const ProductContainer = styled.div`
   box-shadow: -10px 8px 25px rgb(0 0 0 / 8%);
   transition: 0.3s;
   width: 165px;
@@ -13,7 +13,7 @@ export const ItemContainer = styled.div`
   height: 262px;
 `;
 
-export const ItemImg = styled.img`
+export const ProductImg = styled.img`
   width: 100%;
   border-radius: 10px 10px 0px 0px;
   display: inline-block;
@@ -28,7 +28,7 @@ export const ImageWrapper = styled.div`
   position: relative;
 `;
 
-export const ItemFavorite = styled.div`
+export const ProductFavorite = styled.div`
   display: inline-block;
   position: absolute;
   z-index: 3;
@@ -40,7 +40,7 @@ export const ContentWrapper = styled.div`
   padding: 10px;
 `;
 
-export const ItemTitle = styled.div`
+export const ProductTitle = styled.div`
   font-weight: 400;
   font-size: 14px;
   margin-bottom: 5px;
@@ -49,7 +49,7 @@ export const ItemTitle = styled.div`
   white-space: nowrap;
 `;
 
-export const ItemDesc = styled.div`
+export const ProductDesc = styled.div`
   font-size: 12px;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -57,7 +57,7 @@ export const ItemDesc = styled.div`
   margin-top: 5px;
 `;
 
-export const ItemBottomContent = styled.div`
+export const ProductBottomContent = styled.div`
   ${VerticalCenter}
   display: flex;
   flex-flow: row;
@@ -65,17 +65,17 @@ export const ItemBottomContent = styled.div`
   padding: 0px 10px 10px 10px;
 `;
 
-export const ItemTopContent = styled.div`
+export const ProductTopContent = styled.div`
   display: flex;
   flex-flow: row;
   justify-content: space-between;
 `;
 
-export const ItemPrice = styled.div`
+export const ProductPrice = styled.div`
   color: cornflowerblue;
 `;
 
-export const ItemStock = styled.div`
+export const ProductStock = styled.div`
   color: orangered;
   font-size: 14px;
 `;

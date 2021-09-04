@@ -1,6 +1,6 @@
 import React from "react";
-import useProducts from "../../hooks/useProducts";
-import Counter from "../Counter/Counter";
+import useCart from "../../../hooks/useCart";
+import Counter from "../../../components/Counter/Counter";
 import {
   CartRowBody,
   CartRowContainer,
@@ -11,7 +11,7 @@ import {
 } from "./CartRow.style";
 
 function CartRow({ data }) {
-  const { updateCartProduct } = useProducts();
+  const { updateCartProduct } = useCart();
 
   const { image_url, stock, productName, price, quantity = 1 } = data;
 

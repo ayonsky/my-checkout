@@ -8,7 +8,7 @@ import {
   UPDATE_PRODUCT,
   UPDATE_PRODUCT_ERROR,
   UPDATE_PRODUCT_SUCCESS,
-} from "./checkout.actions";
+} from "../actions/products.actions";
 
 let initialState = {
   loading: false,
@@ -16,7 +16,7 @@ let initialState = {
   error: null,
 };
 
-export const checkoutReducer = (state = initialState, { type, payload }) => {
+export const productsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case LOAD_PRODUCTS:
       return { ...state, loading: true, error: null };

@@ -4,8 +4,9 @@ import { Provider } from "react-redux";
 import { applyMiddleware, compose, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
 import App from "./App";
-import reducers, { storeSaga } from "./store";
+
 import logger from "redux-logger";
+import reducers, { cartSaga, productsSaga } from "./store";
 
 const sagaMiddleware = createSagaMiddleware();
 const middlewares = [sagaMiddleware];
@@ -19,7 +20,8 @@ const store = createStore(
   composeEnhancers(applyMiddleware(...middlewares))
 );
 
-sagaMiddleware.run(storeSaga);
+sagaMiddleware.run(productsSaga);
+sagaMiddleware.run(cartSaga);
 
 ReactDOM.render(
   <Provider store={store}>

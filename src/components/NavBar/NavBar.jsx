@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { RiArrowLeftSLine } from "react-icons/ri";
-import useProducts from "../../hooks/useProducts";
 import { useMediaQuery } from "react-responsive";
 import {
   CartIconBadge,
@@ -11,9 +10,10 @@ import {
   NavBarIcon,
 } from "./NavBar.style";
 import { pageNames } from "../../utils/constants";
+import useCart from "../../hooks/useCart";
 
 function NavBar(props) {
-  const { cart } = useProducts();
+  const { cart } = useCart();
   const [badge, setBadge] = useState(0);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const { pageName = "" } = props;
