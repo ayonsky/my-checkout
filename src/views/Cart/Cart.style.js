@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import { Button } from "../../components/Button/Button.style";
 
 export const CartContainer = styled.div`
   display: flex;
@@ -46,4 +47,9 @@ export const TotalAmount = styled.a`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 600;
+`;
+
+export const CheckoutButton = styled(Button)`
+  width: 100%;
+  font-size: 18px;
 `;

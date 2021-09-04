@@ -68,7 +68,7 @@ function Product(props) {
       <ProductBottomContent>
         <ProductStock>{`${stock} left`}</ProductStock>
         <Button
-          stock={stock}
+          disabled={stock === 0}
           onClick={(e) => {
             e.stopPropagation();
             handleAddToCart(product);

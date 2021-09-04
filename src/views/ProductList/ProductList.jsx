@@ -31,7 +31,7 @@ function ProductList() {
     }
   }, [getProducts, getFavoriteProducts, toggle]);
 
-  const handleScroll = (event) => {
+  const _handleScroll = (event) => {
     const element = event.target;
     if (
       !toggle &&
@@ -42,25 +42,29 @@ function ProductList() {
     }
   };
 
-  const handleToggle = (event) => {
+  const _handleToggle = (event) => {
     setToggle(event.target.checked);
   };
 
+  const _productList = () => {
+    return products.map((product) => (
+      <Product key={product.id} product={product} />
+    ));
+  };
+  
   return (
     <ProductListContainer>
       <ToggleSwitchWrapper>
         Show only favorite?
         <Switch
           checked={toggle}
-          onChange={handleToggle}
+          onChange={_handleToggle}
           value="toggleFavorite"
         />
       </ToggleSwitchWrapper>
-      <ProductListWrapper isMobile={isMobile} onScroll={handleScroll}>
+      <ProductListWrapper isMobile={isMobile} onScroll={_handleScroll}>
         <ProductListFlexDiv isMobile={isMobile}>
-          {products.map((product) => (
-            <Product key={product.id} product={product} />
-          ))}
+          {_productList()}
         </ProductListFlexDiv>
       </ProductListWrapper>
     </ProductListContainer>

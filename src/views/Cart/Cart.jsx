@@ -8,10 +8,10 @@ import {
   CartContainer,
   CartFooter,
   CartRowsContainer,
+  CheckoutButton,
   TotalAmount,
   TotalAmountWrapper,
 } from "./Cart.style";
-import { Button } from "../../components/Button/Button.style";
 
 function Cart() {
   const [amount, setAmount] = useState(0);
@@ -33,20 +33,20 @@ function Cart() {
     );
   }, [cart, removeProduct]);
 
+  const _cartList = () => {
+    return cart.map((product) => (
+      <CartRow key={`${product.id}`} data={product} />
+    ));
+  };
+
   return (
     <CartContainer isMobile={isMobile}>
-      <CartRowsContainer isMobile={isMobile}>
-        {cart.map((product) => (
-          <CartRow key={`${product.id}`} data={product} />
-        ))}
-      </CartRowsContainer>
+      <CartRowsContainer isMobile={isMobile}>{_cartList()}</CartRowsContainer>
       <CartFooter>
         <TotalAmountWrapper>
           <span>Total Amount</span> <TotalAmount>{`${amount}€`}</TotalAmount>
         </TotalAmountWrapper>
-        <Button width={"100%"} type={"submit"} fontSize={"18px"}>
-          Checkout
-        </Button>
+        <CheckoutButton type={"submit"}>Checkout</CheckoutButton>
       </CartFooter>
     </CartContainer>
   );
