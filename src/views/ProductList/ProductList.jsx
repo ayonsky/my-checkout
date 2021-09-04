@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Switch } from "@material-ui/core";
-import Item from "../../components/Item/Item";
 import withHeader from "../../hocs/withHeader";
-import useProducts from "../../hooks/useProducts";
+import Product from "./Product/Product";
+import useProduct from "../../hooks/useProduct";
 import { pageNames } from "../../utils/constants";
 import {
   ProductListContainer,
@@ -18,7 +18,7 @@ function ProductList() {
     getProducts,
     getMoreProducts,
     getFavoriteProducts,
-  } = useProducts();
+  } = useProduct();
   const [page, setPage] = useState(2);
   const [toggle, setToggle] = useState(false);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
@@ -59,7 +59,7 @@ function ProductList() {
       <ProductListWrapper isMobile={isMobile} onScroll={handleScroll}>
         <ProductListFlexDiv isMobile={isMobile}>
           {products.map((product) => (
-            <Item key={product.id} item={product} />
+            <Product key={product.id} product={product} />
           ))}
         </ProductListFlexDiv>
       </ProductListWrapper>

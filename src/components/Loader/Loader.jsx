@@ -1,10 +1,10 @@
 import React from "react";
 import CircleLoader from "react-spinners/CircleLoader";
 import { LoaderContainer, StyledLoader } from "./Loader.style";
-import useProducts from "../../hooks/useProducts";
+import useLoader from "../../hooks/useLoader";
 
 function Loader() {
-  const { loading } = useProducts();
+  const { loading } = useLoader();
   return (
     <>
       {loading && (

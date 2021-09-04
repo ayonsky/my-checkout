@@ -8,7 +8,7 @@ import {
   UPDATE_CART_PRODUCT,
   UPDATE_CART_PRODUCT_ERROR,
   UPDATE_CART_PRODUCT_SUCCESS,
-} from "./cart.actions";
+} from "../actions/cart.actions";
 
 let initialState = {
   loading: false,

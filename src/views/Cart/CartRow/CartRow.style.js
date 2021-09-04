@@ -1,6 +1,6 @@
 import styled from "styled-components/macro";
-import { VerticalCenter } from "../../App.style";
-import { ItemTitle } from "../Item/Item.style";
+import { VerticalCenter } from "../../../App.style";
+import { ProductTitle } from "../../ProductList/Product/Product.style";
 
 export const CartRowContainer = styled.div`
   margin: 20px 20px 0px 0px;
@@ -30,6 +30,6 @@ export const CartRowPrice = styled.div`
   color: cornflowerblue;
 `;
 
-export const CartRowTitle = styled(ItemTitle)`
+export const CartRowTitle = styled(ProductTitle)`
   width: 150px;
 `;

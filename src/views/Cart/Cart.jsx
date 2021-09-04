@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { Button } from "../../App.style";
-import CartRow from "../../components/CartRow/CartRow";
 import withHeader from "../../hocs/withHeader";
-import useProducts from "../../hooks/useProducts";
+import useCart from "../../hooks/useCart";
+import CartRow from "./CartRow/CartRow";
 import { pageNames } from "../../utils/constants";
 import {
   CartContainer,
@@ -12,10 +11,11 @@ import {
   TotalAmount,
   TotalAmountWrapper,
 } from "./Cart.style";
+import { Button } from "../../components/Button/Button.style";
 
 function Cart() {
   const [amount, setAmount] = useState(0);
-  const { cart = [], products, removeProduct } = useProducts();
+  const { cart = [], removeProduct } = useCart();
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function Cart() {
     setAmount(
       cart.reduce((total, item) => total + item.price * item.quantity, 0)
     );
-  }, [products, cart, removeProduct]);
+  }, [cart, removeProduct]);
 
   return (
     <CartContainer isMobile={isMobile}>
