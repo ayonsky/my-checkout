@@ -1,15 +1,15 @@
 import React from "react";
-import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { Button } from "../../../components/Button/Button.style";
+import Favorite from "../../../components/Favorite/Favorite";
 import useCart from "../../../hooks/useCart";
 import useProduct from "../../../hooks/useProduct";
 import {
   ContentWrapper,
+  FavoriteIconWrapper,
   ImageWrapper,
   ProductBottomContent,
   ProductContainer,
   ProductDesc,
-  ProductFavorite,
   ProductImg,
   ProductPrice,
   ProductStock,
@@ -45,14 +45,15 @@ function Product(props) {
     <ProductContainer>
       <ImageWrapper>
         <ProductImg src={image_url} alt={""} />
-        <ProductFavorite
-          onClick={(e) => {
-            e.stopPropagation();
-            handleToggleFavorite(product);
-          }}
-        >
-          {favorite ? <MdFavorite size={25} /> : <MdFavoriteBorder size={25} />}
-        </ProductFavorite>
+        <FavoriteIconWrapper>
+          <Favorite
+            favorite={favorite}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleToggleFavorite(product);
+            }}
+          />
+        </FavoriteIconWrapper>
       </ImageWrapper>
       <ContentWrapper>
         <ProductTopContent>

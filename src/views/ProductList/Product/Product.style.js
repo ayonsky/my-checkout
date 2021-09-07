@@ -28,7 +28,7 @@ export const ImageWrapper = styled.div`
   position: relative;
 `;
 
-export const ProductFavorite = styled.div`
+export const FavoriteIconWrapper = styled.div`
   display: inline-block;
   position: absolute;
   z-index: 3;
