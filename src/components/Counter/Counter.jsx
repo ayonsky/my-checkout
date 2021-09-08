@@ -6,13 +6,13 @@ function Counter(props) {
   const [counter, setCounter] = useState(1);
 
   useEffect(() => {
-    if (onChange) onChange(counter);
+    if (onChange && actual !== counter) onChange(counter);
   }, [counter]);
 
   useEffect(() => {
     setCounter(actual);
   }, [actual]);
-	
+
   return (
     <div>
       <CounterButton

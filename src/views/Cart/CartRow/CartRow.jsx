@@ -16,15 +16,13 @@ function CartRow({ data }) {
   const { image_url, stock, productName, price, quantity = 1 } = data;
 
   const counterOnChange = (counter) => {
+    const isIncrementing = counter > quantity;
     const productToUpdate = data;
 
-    if (counter > quantity && stock > 0) {
-      productToUpdate.quantity = counter;
-      productToUpdate.stock -= 1;
-      updateCartProduct(productToUpdate);
-    } else if (counter < quantity && quantity > 0) {
-      productToUpdate.quantity = counter;
-      productToUpdate.stock += 1;
+    productToUpdate.quantity = counter;
+    productToUpdate.stock += isIncrementing ? -1 : 1;
+
+    if ((isIncrementing && stock > 0) || (!isIncrementing && quantity > 0)) {
       updateCartProduct(productToUpdate);
     }
   };
