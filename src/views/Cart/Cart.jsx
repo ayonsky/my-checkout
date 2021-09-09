@@ -19,8 +19,7 @@ function Cart() {
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
 
   useEffect(() => {
-    const cartInstance = [...cart];
-    const removeFromCart = cartInstance.filter((item) => item.quantity === 0);
+    const removeFromCart = cart.filter((item) => item.quantity === 0);
 
     if (removeFromCart.length) {
       removeFromCart.forEach((item) => {

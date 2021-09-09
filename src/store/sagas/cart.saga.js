@@ -1,7 +1,5 @@
 import { put, takeEvery, call, all } from "redux-saga/effects";
-import {
-  updateProductAPI,
-} from "../api/products.api";
+import { updateProductAPI } from "../api/products.api";
 import {
   ADD_PRODUCT_TO_CART,
   ADD_PRODUCT_TO_CART_ERROR,
@@ -13,16 +11,13 @@ import {
   UPDATE_CART_PRODUCT_ERROR,
   UPDATE_CART_PRODUCT_SUCCESS,
 } from "../actions/cart.actions";
-import {
-  UPDATE_PRODUCT_SUCCESS,
-} from "../actions/products.actions";
+import { UPDATE_PRODUCT_SUCCESS } from "../actions/products.actions";
 
 export function* addingProductToCartAsync({ payload }) {
   try {
     const data = yield call(updateProductAPI, payload);
-    const updatedProduct = data;
-    yield put({ type: UPDATE_PRODUCT_SUCCESS, payload: updatedProduct });
-    yield put({ type: ADD_PRODUCT_TO_CART_SUCCESS, payload: updatedProduct });
+    yield put({ type: UPDATE_PRODUCT_SUCCESS, payload: data });
+    yield put({ type: ADD_PRODUCT_TO_CART_SUCCESS, payload: data });
   } catch (err) {
     yield put({ type: ADD_PRODUCT_TO_CART_ERROR, payload: err });
   }
@@ -46,14 +41,14 @@ export function* watchRemovingProductFromCartAsync() {
 
 export function* updatingCartProductAsync({ payload }) {
   try {
-    const cartProduct = { ...payload };
+    const updateProduct = { ...payload };
 
-    delete payload.quantity;
+    delete updateProduct.quantity;
 
-    const data = yield call(updateProductAPI, payload);
+    const data = yield call(updateProductAPI, updateProduct);
     const updatedProduct = data;
     yield put({ type: UPDATE_PRODUCT_SUCCESS, payload: updatedProduct });
-    yield put({ type: UPDATE_CART_PRODUCT_SUCCESS, payload: cartProduct });
+    yield put({ type: UPDATE_CART_PRODUCT_SUCCESS, payload: payload });
   } catch (err) {
     yield put({ type: UPDATE_CART_PRODUCT_ERROR, payload: err });
   }
