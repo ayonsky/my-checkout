@@ -1,5 +1,4 @@
 import React from "react";
-import CircleLoader from "react-spinners/CircleLoader";
 import { LoaderContainer, StyledLoader } from "./Loader.style";
 import useLoader from "../../hooks/useLoader";
 
@@ -9,9 +8,7 @@ function Loader() {
     <>
       {loading && (
         <LoaderContainer>
-          <StyledLoader>
-            <CircleLoader color={"orange"} loading={loading} size={150} />
-          </StyledLoader>
+          <StyledLoader />
         </LoaderContainer>
       )}
     </>
